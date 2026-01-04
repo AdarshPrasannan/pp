@@ -44,7 +44,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"]; // Update these
+const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"];
 const typingDelay = 200;
 const erasingDelay = 100;
 const newTextDelay = 2000;
@@ -165,26 +165,37 @@ window.addEventListener('scroll', () => {
 // Update Copyright Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Form Submission Handling
+// ===== FORMSPREE FORM HANDLING (CHOOSE ONE OPTION) =====
+
+// OPTION 1: Use Formspree with alert (Recommended)
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        // Here you would typically send the form data to a server
-        alert('Thank you for your message! I will get back to you soon.');
-        this.reset();
+        
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            } else {
+                alert('Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            alert('Network error. Please try again.');
+        }
     });
 }
 
-// Form Submission Handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you for your message! I will get back to you soon.');
-        this.reset();
-    });
-}
+// OPTION 2: Remove JavaScript and let Formspree handle everything
+// (Just delete all form submission JavaScript if you want Formspree default behavior)
 
 // ===== Timeline Navigation =====
 const timelineBtns = document.querySelectorAll('.timeline-btn');
