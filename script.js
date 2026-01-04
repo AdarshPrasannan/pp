@@ -44,7 +44,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Web Developer", "UI/UX Designer", "Programmer"]; // Update these
+const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"]; // Update these
 const typingDelay = 200;
 const erasingDelay = 100;
 const newTextDelay = 2000;
