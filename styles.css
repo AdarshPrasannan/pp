@@ -414,87 +414,7 @@ header {
     box-shadow: var(--shadow);
 }
 
-/* Education Section */
-/*.education {
-    background-color: var(--bg-color);
-}
-
-.education-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5rem;
-}
-
-.education-column {
-    flex: 1 1 40rem;
-}
-
-.education-column .title {
-    font-size: 2.5rem;
-    margin: 0 0 1.5rem 2rem;
-    color: var(--primary-color);
-}
-
-.education-box {
-    border-left: 0.2rem solid var(--primary-color);
-}
-
-.education-content {
-    position: relative;
-    padding-left: 2rem;
-}
-
-.education-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -1.1rem;
-    width: 2rem;
-    height: 2rem;
-    background-color: var(--primary-color);
-    border-radius: 50%;
-}
-
-.education-content .content {
-    position: relative;
-    padding: 1.5rem;
-    border: 0.2rem solid var(--primary-color);
-    border-radius: 0.6rem;
-    margin-bottom: 2rem;
-    background-color: var(--card-bg);
-    transition: 0.5s ease;
-}
-
-.education-content .content:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: var(--shadow);
-}
-
-.education-content .content .year {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    padding-bottom: 0.5rem;
-}
-
-.education-content .content .year i {
-    padding-right: 0.5rem;
-}
-
-.education-content .content h3 {
-    font-size: 2rem;
-    margin: 0.5rem 0 1rem;
-}
-
-.education-content .content p {
-    font-size: 1.6rem;
-}*/
-
-
-.education-content .content p {
-    font-size: 1.6rem;
-}
-
-/* ===== Enhanced Timeline Styles ===== */
+/* ===== Enhanced Timeline Styles (REPLACES OLD EDUCATION) ===== */
 .timeline-container {
     position: relative;
     max-width: 1200px;
@@ -769,14 +689,6 @@ header {
         padding: 2rem;
     }
 }
-
-/* Skills Section */
-.skills {
-    background-color: var(--darker-color);
-}
-
-
-
 
 /* Skills Section */
 .skills {
