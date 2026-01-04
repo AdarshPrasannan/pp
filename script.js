@@ -175,3 +175,42 @@ if (contactForm) {
         this.reset();
     });
 }
+
+// Form Submission Handling
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! I will get back to you soon.');
+        this.reset();
+    });
+}
+
+// ===== Timeline Navigation =====
+const timelineBtns = document.querySelectorAll('.timeline-btn');
+const timelines = document.querySelectorAll('.timeline');
+
+// Initialize first timeline as active
+if (timelineBtns.length > 0 && timelines.length > 0) {
+    timelineBtns[0].classList.add('active');
+    timelines[0].classList.add('active');
+    
+    // Timeline Navigation
+    timelineBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const timelineType = btn.dataset.timeline;
+            
+            // Update active button
+            timelineBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Show selected timeline
+            timelines.forEach(timeline => {
+                timeline.classList.remove('active');
+                if (timeline.classList.contains(`${timelineType}-timeline`)) {
+                    timeline.classList.add('active');
+                }
+            });
+        });
+    });
+}
