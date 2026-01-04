@@ -1,307 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Professional Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adarsh Prasannan | Portfolio</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Your<span>Name</span></div>
-            <div class="nav-links">
-                <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="#about"><i class="fas fa-user"></i> About</a>
-                <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-                <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-                <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
-                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-            </div>
-            <button id="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h4>Hello, my name is</h4>
-                <h1>Your <span>Name</span></h1>
-                <h3>And I'm a <span class="typed-text"></span><span class="cursor">&nbsp;</span></h3>
-                <p>Welcome to my professional portfolio where I showcase my work and skills.</p>
-                <div class="social-links">
-                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-                <a href="#contact" class="btn hire-me">Hire Me <i class="fas fa-paper-plane"></i></a>
-            </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="assets/images/profile.jpg" alt="Your Name" class="profile-img">
-                    <div class="circle-spin"></div>
-                </div>
-            </div>
-        </section>
+<header>
+  <h1>Adarsh</h1>
+  <button id="themeToggle">🌙</button>
+</header>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <h2 class="heading">About <span>Me</span></h2>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="assets/images/about.jpg" alt="About Me">
-                </div>
-                <div class="about-text">
-                    <h3>Professional <span>Title</span></h3>
-                    <p>I'm a passionate developer with expertise in web technologies. I specialize in creating responsive, user-friendly applications with clean code and modern design principles.</p>
-                    <div class="personal-info">
-                        <div><span>Name:</span> Your Name</div>
-                        <div><span>Age:</span> 25</div>
-                        <div><span>Education:</span> Master's Degree</div>
-                        <div><span>Email:</span> your.email@example.com</div>
-                        <div><span>Phone:</span> +1 234 567 890</div>
-                        <div><span>City:</span> New York, USA</div>
-                    </div>
-                    <div class="btn-container">
-                        <a href="assets/docs/resume.pdf" class="btn download-cv" download>Download CV <i class="fas fa-download"></i></a>
-                        <a href="#contact" class="btn">Contact Me <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="hero">
+  <h2>Hi, I'm <span>Adarsh Prasannan</span></h2>
+  <p>Data Analyst | Power BI • Python • SQL</p>
+  <a href="#" class="btn">Download Resume</a>
+</section>
 
-        <!-- Education Section -->
-        <section id="education" class="education">
-            <h2 class="heading">My <span>Journey</span></h2>
-            <div class="education-row">
-                <div class="education-column">
-                    <h3 class="title">Education</h3>
-                    <div class="education-box">
-                        <div class="education-content">
-                            <div class="content">
-                                <div class="year"><i class="fas fa-calendar"></i> 2017 - 2021</div>
-                                <h3>Master Degree - University</h3>
-                                <p>Computer Science with specialization in Web Technologies. Graduated with honors.</p>
-                            </div>
-                        </div>
-                        <div class="education-content">
-                            <div class="content">
-                                <div class="year"><i class="fas fa-calendar"></i> 2013 - 2017</div>
-                                <h3>Bachelor Degree - University</h3>
-                                <p>Bachelor of Science in Information Technology. Minor in Digital Design.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="education-column">
-                    <h3 class="title">Experience</h3>
-                    <div class="education-box">
-                        <div class="education-content">
-                            <div class="content">
-                                <div class="year"><i class="fas fa-calendar"></i> 2021 - Present</div>
-                                <h3>Senior Developer - Tech Company</h3>
-                                <p>Lead developer for web applications. Managed team of 5 developers.</p>
-                            </div>
-                        </div>
-                        <div class="education-content">
-                            <div class="content">
-                                <div class="year"><i class="fas fa-calendar"></i> 2019 - 2021</div>
-                                <h3>Junior Developer - Startup</h3>
-                                <p>Full-stack development using modern JavaScript frameworks.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="about reveal">
+  <h3>About Me</h3>
+  <p>
+    Data analyst passionate about converting raw data into meaningful insights.
+  </p>
+</section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <h2 class="heading">My <span>Skills</span></h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Technical Skills</h3>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>HTML/CSS</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress html" style="width: 0"></div>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>JavaScript</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress js" style="width: 0"></div>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>React</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress react" style="width: 0"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Professional Skills</h3>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>UI/UX Design</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress design" style="width: 0"></div>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>Problem Solving</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress problem" style="width: 0"></div>
-                        </div>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-info">
-                            <span>Teamwork</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="progress teamwork" style="width: 0"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="skills reveal">
+  <h3>Skills</h3>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <h2 class="heading">My <span>Projects</span></h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="assets/images/project1.jpg" alt="E-Commerce Website">
-                        <div class="project-layer">
-                            <h4>E-Commerce Website</h4>
-                            <p>Full-featured online store with payment integration</p>
-                            <div class="project-links">
-                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>E-Commerce Platform</h3>
-                        <div class="tech-used">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="assets/images/project2.jpg" alt="Task Manager">
-                        <div class="project-layer">
-                            <h4>Task Manager</h4>
-                            <p>Productivity app with drag-and-drop interface</p>
-                            <div class="project-links">
-                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Task Management App</h3>
-                        <div class="tech-used">
-                            <span>Vue.js</span>
-                            <span>Firebase</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-container">
-                <a href="#" class="btn">View All Projects <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
+  <div class="skill">
+    <span>Power BI</span>
+    <div class="bar"><div style="width:90%"></div></div>
+  </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <h2 class="heading">Contact <span>Me</span></h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3><i class="fas fa-envelope"></i> Email</h3>
-                    <p>your.email@example.com</p>
-                    
-                    <h3><i class="fas fa-phone"></i> Phone</h3>
-                    <p>+1 234 567 890</p>
-                    
-                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
-                    <p>New York, USA</p>
-                    
-                    <h3><i class="fas fa-file-pdf"></i> Resume</h3>
-                    <a href="assets/docs/resume.pdf" download>Download PDF</a>
-                    
-                    <div class="social-links">
-                        <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/yourhandle" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-<form class="contact-form">
-                    <div class="input-box">
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="input-box">
-                        <input type="tel" placeholder="Mobile Number">
-                        <input type="text" placeholder="Email Subject">
-                    </div>
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-                </form>
-                
-               
+  <div class="skill">
+    <span>Python</span>
+    <div class="bar"><div style="width:85%"></div></div>
+  </div>
 
-                
-            </div>
-        </section>
-    </main>
+  <div class="skill">
+    <span>SQL</span>
+    <div class="bar"><div style="width:80%"></div></div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p>Copyright &copy; <span id="year"></span> by YourName | All Rights Reserved.</p>
-            <div class="footer-top">
-                <a href="#home"><i class="fas fa-arrow-up"></i></a>
-            </div>
-        </div>
-    </footer>
+<section class="projects reveal">
+  <h3>Projects</h3>
+  <div class="project" onclick="openModal()">IPL Cricket Performance Analytics</div>
+</section>
 
-    <script src="script.js"></script>
+<section class="contact reveal">
+  <h3>Contact</h3>
+  <p>Email: adarsh@example.com</p>
+</section>
+
+<div id="modal">
+  <div class="modal-content">
+    <span onclick="closeModal()">×</span>
+    <p>Detailed project case study goes here.</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
