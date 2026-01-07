@@ -165,38 +165,6 @@ window.addEventListener('scroll', () => {
 // Update Copyright Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ===== FORMSPREE FORM HANDLING (CHOOSE ONE OPTION) =====
-
-// OPTION 1: Use Formspree with alert (Recommended)
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            } else {
-                alert('Something went wrong. Please try again.');
-            }
-        } catch (error) {
-            alert('Network error. Please try again.');
-        }
-    });
-}
-
-// OPTION 2: Remove JavaScript and let Formspree handle everything
-// (Just delete all form submission JavaScript if you want Formspree default behavior)
-
 // ===== Timeline Navigation =====
 const timelineBtns = document.querySelectorAll('.timeline-btn');
 const timelines = document.querySelectorAll('.timeline');
@@ -224,4 +192,93 @@ if (timelineBtns.length > 0 && timelines.length > 0) {
             });
         });
     });
+}
+
+// ===== Formspree Form Handling =====
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        // Only prevent default if form has Formspree action
+        if (this.action.includes('formspree')) {
+            e.preventDefault();
+            
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please try again.');
+            }
+        }
+        // If no Formspree action, form will submit normally
+    });
+}
+
+// ===== Additional Animations & Effects =====
+// Add hover effects for info cards
+document.querySelectorAll('.info-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-3px)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+    });
+});
+
+// Add smooth scrolling for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        // Skip if it's just "#" or external link
+        if (href === '#' || href.includes('http')) return;
+        
+        e.preventDefault();
+        const targetElement = document.querySelector(href);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ===== Initialize on Load =====
+window.addEventListener('load', () => {
+    // Initialize animations
+    animateOnScroll();
+    
+    // Initialize skill bars if skills section is visible
+    const skillsSection = document.querySelector('#skills');
+    if (skillsSection && isElementInViewport(skillsSection)) {
+        animateSkillBars();
+    }
+    
+    // Initialize current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+});
+
+// Helper function to check if element is in viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 }
