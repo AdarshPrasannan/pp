@@ -45,7 +45,7 @@ html {
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    padding-top: 120px; /* Increased for taller header */
+    padding-top: 90px; /* Reduced from 120px for smaller header */
 }
 
 section {
@@ -101,14 +101,14 @@ section:nth-child(even) {
     font-size: 1.4rem;
 }
 
-/* ===== FIXED HEADER STYLES - STACKED LAYOUT ===== */
+/* ===== FIXED HEADER STYLES - REDUCED HEIGHT ===== */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px; /* Taller header for stacked layout */
-    padding: 1rem 9%;
+    height: 90px; /* Reduced from 120px */
+    padding: 0.5rem 9%; /* Reduced padding */
     background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
@@ -123,17 +123,17 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 40px; /* Reduced from 50px */
 }
 
 .logo {
-    font-size: 2.2rem;
+    font-size: 2rem; /* Reduced from 2.2rem */
     color: var(--text-color);
     font-weight: 600;
     cursor: default;
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 40px; /* Reduced from 50px */
 }
 
 .logo span {
@@ -149,16 +149,16 @@ header {
 
 /* Theme Toggle */
 #theme-toggle {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Reduced from 2rem */
     color: var(--text-color);
     cursor: pointer;
     background: transparent;
-    padding: 0.5rem;
+    padding: 0.4rem; /* Reduced from 0.5rem */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 40px;
+    height: 35px; /* Reduced from 40px */
+    width: 35px; /* Reduced from 40px */
     border-radius: 50%;
     transition: all 0.3s ease;
 }
@@ -174,13 +174,13 @@ header {
     cursor: pointer;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 21px;
+    width: 28px; /* Reduced from 30px */
+    height: 19px; /* Reduced from 21px */
 }
 
 .hamburger .line {
     width: 100%;
-    height: 0.3rem;
+    height: 0.25rem; /* Reduced from 0.3rem */
     background-color: var(--text-color);
     border-radius: 1rem;
     transition: all 0.3s ease;
@@ -189,20 +189,20 @@ header {
 /* Bottom row: Navigation links */
 .nav-container {
     width: 100%;
-    height: 50px;
+    height: 40px; /* Reduced from 50px */
     display: flex;
     align-items: center;
 }
 
 .nav-links {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem; /* Reduced from 3rem */
     align-items: center;
-    height: 50px;
+    height: 40px; /* Reduced from 50px */
 }
 
 .nav-links a {
-    font-size: 1.6rem;
+    font-size: 1.5rem; /* Reduced from 1.6rem */
     color: var(--text-color);
     font-weight: 500;
     transition: 0.3s;
@@ -210,9 +210,9 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 1rem;
+    height: 40px; /* Reduced from 50px */
+    line-height: 40px; /* Reduced from 50px */
+    padding: 0 0.8rem; /* Reduced from 1rem */
     white-space: nowrap;
 }
 
@@ -224,10 +224,10 @@ header {
 .nav-links a.active::after {
     content: '';
     position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    height: 0.2rem;
+    bottom: 0.5rem; /* Reduced from 1rem */
+    left: 0.8rem; /* Reduced from 1rem */
+    right: 0.8rem; /* Reduced from 1rem */
+    height: 0.15rem; /* Reduced from 0.2rem */
     background-color: var(--primary-color);
     border-radius: 0.3rem;
 }
@@ -238,7 +238,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 10rem;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 90px); /* Adjusted for smaller header */
 }
 
 .hero-content h4 {
@@ -1170,14 +1170,14 @@ footer {
     }
     
     .nav-links a {
-        font-size: 1.5rem;
-        padding: 0 0.3rem;
+        font-size: 1.4rem; /* Adjusted from 1.5rem */
+        padding: 0 0.5rem; /* Adjusted from 0.3rem */
     }
 }
 
 @media (max-width: 991px) {
     header {
-        padding: 1rem 3%;
+        padding: 0.5rem 3%; /* Reduced padding */
     }
     
     section {
@@ -1196,21 +1196,21 @@ footer {
 /* ===== MOBILE RESPONSIVE FIXES ===== */
 @media (max-width: 768px) {
     body {
-        padding-top: 100px; /* Adjusted for mobile header */
+        padding-top: 80px; /* Reduced from 100px */
     }
     
     header {
-        height: 100px;
-        padding: 0.5rem 3%;
+        height: 80px; /* Reduced from 100px */
+        padding: 0.3rem 3%; /* Reduced padding */
     }
     
     .header-top {
-        height: 40px;
+        height: 35px; /* Reduced from 40px */
     }
     
     .logo {
-        font-size: 2rem;
-        height: 40px;
+        font-size: 1.8rem; /* Reduced from 2rem */
+        height: 35px; /* Reduced from 40px */
     }
     
     .header-right {
@@ -1218,29 +1218,35 @@ footer {
     }
     
     #theme-toggle {
-        font-size: 1.8rem;
-        height: 35px;
-        width: 35px;
+        font-size: 1.6rem; /* Reduced from 1.8rem */
+        height: 30px; /* Reduced from 35px */
+        width: 30px; /* Reduced from 35px */
     }
     
     /* Show hamburger on mobile */
     .hamburger {
         display: flex;
+        width: 25px; /* Reduced from 28px */
+        height: 17px; /* Reduced from 19px */
+    }
+    
+    .hamburger .line {
+        height: 0.2rem; /* Reduced from 0.25rem */
     }
     
     /* Hide desktop navigation on mobile */
     .nav-container {
         position: fixed;
-        top: 100px;
+        top: 80px; /* Reduced from 100px */
         left: -100%;
         width: 100%;
-        height: calc(100vh - 100px);
+        height: calc(100vh - 80px); /* Adjusted for smaller header */
         background-color: var(--bg-color);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 2rem 3% 4rem;
+        padding: 1.5rem 3% 3rem; /* Reduced padding */
         overflow-y: auto;
         z-index: 999;
         transition: 0.3s ease;
@@ -1260,8 +1266,8 @@ footer {
     .nav-links a {
         height: auto;
         line-height: normal;
-        padding: 1.5rem 0;
-        font-size: 1.8rem;
+        padding: 1.2rem 0; /* Reduced from 1.5rem */
+        font-size: 1.6rem; /* Adjusted from 1.8rem */
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
@@ -1296,7 +1302,7 @@ footer {
         flex-direction: column;
         gap: 3rem;
         text-align: center;
-        min-height: calc(100vh - 100px);
+        min-height: calc(100vh - 80px); /* Adjusted for smaller header */
         padding-top: 2rem;
         margin-top: 0;
     }
@@ -1401,7 +1407,7 @@ footer {
 
 /* Hamburger animation */
 .hamburger.active .line:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg); /* Adjusted from 9px */
 }
 
 .hamburger.active .line:nth-child(2) {
@@ -1409,16 +1415,16 @@ footer {
 }
 
 .hamburger.active .line:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg); /* Adjusted from -9px */
 }
 
 @media (max-width: 768px) {
     .hamburger.active .line:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
+        transform: translateY(5px) rotate(45deg); /* Adjusted from 6px */
     }
     
     .hamburger.active .line:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
+        transform: translateY(-5px) rotate(-45deg); /* Adjusted from -6px */
     }
 }
 
@@ -1433,14 +1439,14 @@ footer {
     }
     
     .logo {
-        font-size: 1.8rem;
+        font-size: 1.6rem; /* Reduced from 1.8rem */
     }
     
     #theme-toggle {
         margin-left: 0.5rem;
-        font-size: 1.6rem;
-        height: 30px;
-        width: 30px;
+        font-size: 1.4rem; /* Reduced from 1.6rem */
+        height: 28px; /* Reduced from 30px */
+        width: 28px; /* Reduced from 30px */
     }
     
     .hero-content h1 {
@@ -1461,16 +1467,18 @@ footer {
 @media (max-width: 365px) {
     #theme-toggle {
         margin-left: 0.3rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Reduced from 1.5rem */
+        height: 25px; /* Reduced from 30px */
+        width: 25px; /* Reduced from 30px */
     }
     
     .hamburger {
-        width: 25px;
-        height: 18px;
+        width: 22px; /* Reduced from 25px */
+        height: 15px; /* Reduced from 18px */
     }
     
     .hamburger .line {
-        height: 0.25rem;
+        height: 0.18rem; /* Reduced from 0.25rem */
     }
     
     .hero-content h1 {
