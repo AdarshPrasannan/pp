@@ -1266,6 +1266,25 @@ footer {
     .hero-image {
         width: 90vw;
     }
+
+    /* ================= FIX: Header spacing issues ================= */
+
+/* 1️⃣ Push Dark Theme Toggle slightly downward */
+#theme-toggle {
+    position: relative;
+    top: 6px; /* adjust between 4px–8px if needed */
+}
+
+/* 2️⃣ Prevent hero image & content from touching fixed navbar */
+section {
+    padding-top: 12rem; /* header height compensation */
+}
+
+/* 3️⃣ Extra fine-tuning only for hero section (optional but recommended) */
+.hero {
+    margin-top: 2rem;
+}
+
     
     .about-img .image-container {
         width: 90vw;
