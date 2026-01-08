@@ -232,7 +232,7 @@ header {
     border-radius: 0.3rem;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION WITH FIXED CIRCLE ALIGNMENT ===== */
 .hero {
     display: flex;
     justify-content: center;
@@ -306,9 +306,12 @@ header {
     padding: 1.2rem 3.2rem;
 }
 
+/* FIXED CIRCLE ANIMATION SECTION - CROSS-BROWSER COMPATIBLE */
 .hero-image {
     position: relative;
     width: 35vw;
+    min-width: 300px;
+    max-width: 400px;
     animation: floatImage 4s ease-in-out infinite;
 }
 
@@ -324,6 +327,7 @@ header {
     }
 }
 
+/* Main container for the circular image */
 .image-wrapper {
     position: relative;
     width: 100%;
@@ -332,50 +336,64 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Ensure nothing goes outside the circle */
 }
 
+/* Animated background circle */
 .image-wrapper::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 4rem); /* Slightly larger than container */
+    height: calc(100% + 4rem); /* Slightly larger than container */
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background: conic-gradient(
+        var(--primary-color) 0deg,
+        transparent 120deg,
+        var(--primary-color) 240deg,
+        transparent 360deg
+    );
     animation: spin 8s linear infinite;
-    z-index: -1;
     opacity: 0.3;
+    z-index: -1;
 }
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
+/* Profile image */
 .profile-img {
     width: 90%;
+    height: 90%;
     border-radius: 50%;
     border: 0.3rem solid var(--primary-color);
     box-shadow: var(--shadow);
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
 }
 
+/* Outer spinning ring - FIXED FOR MAC/WINDOWS COMPATIBILITY */
 .circle-spin {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(0);
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border-top: 0.3rem solid var(--darker-color);
-    border-bottom: 0.3rem solid var(--darker-color);
-    border-left: 0.3rem solid var(--primary-color);
-    border-right: 0.3rem solid var(--primary-color);
+    border: 0.3rem solid transparent;
+    border-top-color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    box-sizing: border-box;
     animation: circleSpin 8s linear infinite;
 }
 
@@ -899,7 +917,7 @@ header {
 .progress.analytical { background: linear-gradient(90deg, #E74C3C, #E67E22); }
 .progress.storytelling { background: linear-gradient(90deg, #3498DB, #2980B9); }
 .progress.communication { background: linear-gradient(90deg, #2ECC71, #27AE60); }
-.progress.collaboration { background: linear-gradient(90deg, #9B59b6, #8E44AD); }
+.progress.collaboration { background: linear-gradient(90deg, #9B59B6, #8E44AD); }
 .progress.critical { background: linear-gradient(90deg, #E67E22, #D35400); }
 
 /* ===== PROJECTS SECTION ===== */
@@ -1173,6 +1191,10 @@ footer {
         font-size: 1.5rem;
         padding: 0 0.3rem;
     }
+    
+    .hero-image {
+        width: 40vw;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1191,26 +1213,30 @@ footer {
     .nav-links {
         gap: 1.5rem;
     }
+    
+    .hero-image {
+        width: 45vw;
+    }
 }
 
-/* ===== MOBILE RESPONSIVE FIXES - REDUCED HEADER SIZE ONLY ON MOBILE ===== */
+/* ===== MOBILE RESPONSIVE FIXES WITH FIXED CIRCLE ALIGNMENT ===== */
 @media (max-width: 768px) {
     body {
-        padding-top: 80px; /* Reduced from 100px */
+        padding-top: 100px; /* Adjusted for mobile header */
     }
     
     header {
-        height: 80px; /* Reduced from 100px */
+        height: 100px;
         padding: 0.5rem 3%;
     }
     
     .header-top {
-        height: 35px; /* Reduced from 40px */
+        height: 40px;
     }
     
     .logo {
-        font-size: 1.8rem; /* Reduced from 2rem */
-        height: 35px; /* Reduced from 40px */
+        font-size: 2rem;
+        height: 40px;
     }
     
     .header-right {
@@ -1218,35 +1244,29 @@ footer {
     }
     
     #theme-toggle {
-        font-size: 1.6rem; /* Reduced from 1.8rem */
-        height: 30px; /* Reduced from 35px */
-        width: 30px; /* Reduced from 35px */
+        font-size: 1.8rem;
+        height: 35px;
+        width: 35px;
     }
     
     /* Show hamburger on mobile */
     .hamburger {
         display: flex;
-        width: 26px; /* Reduced from 30px */
-        height: 18px; /* Reduced from 21px */
-    }
-    
-    .hamburger .line {
-        height: 0.25rem; /* Reduced from 0.3rem */
     }
     
     /* Hide desktop navigation on mobile */
     .nav-container {
         position: fixed;
-        top: 80px; /* Reduced from 100px */
+        top: 100px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 80px); /* Adjusted for smaller header */
+        height: calc(100vh - 100px);
         background-color: var(--bg-color);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 1.5rem 3% 3rem;
+        padding: 2rem 3% 4rem;
         overflow-y: auto;
         z-index: 999;
         transition: 0.3s ease;
@@ -1266,8 +1286,8 @@ footer {
     .nav-links a {
         height: auto;
         line-height: normal;
-        padding: 1.2rem 0; /* Reduced from 1.5rem */
-        font-size: 1.6rem; /* Adjusted from 1.8rem */
+        padding: 1.5rem 0;
+        font-size: 1.8rem;
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
@@ -1300,9 +1320,9 @@ footer {
     
     .hero {
         flex-direction: column;
-        gap: 3rem;
+        gap: 5rem; /* Increased gap for better spacing */
         text-align: center;
-        min-height: calc(100vh - 80px); /* Adjusted for smaller header */
+        min-height: calc(100vh - 100px);
         padding-top: 2rem;
         margin-top: 0;
     }
@@ -1310,6 +1330,7 @@ footer {
     .hero-content {
         order: 2;
         padding: 0 1rem;
+        width: 100%;
     }
     
     .hero-content h4 {
@@ -1334,14 +1355,44 @@ footer {
         padding: 0 1rem;
     }
     
+    /* FIXED CIRCLE FOR MOBILE */
     .hero-image {
-        width: 80vw;
-        max-width: 280px;
+        width: 70vw; /* Fixed width for mobile */
+        min-width: 280px;
+        max-width: 320px;
         margin: 0 auto;
+        order: 1;
+    }
+    
+    /* Ensure proper circle alignment on mobile */
+    .image-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        position: relative;
+    }
+    
+    .image-wrapper::before {
+        width: calc(100% + 3rem); /* Adjusted for mobile */
+        height: calc(100% + 3rem); /* Adjusted for mobile */
+    }
+    
+    .profile-img {
+        width: 88%;
+        height: 88%;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .circle-spin {
+        width: 100%;
+        height: 100%;
+        border-width: 0.25rem; /* Slightly thinner for mobile */
     }
     
     .social-links {
         margin-bottom: 3rem;
+        justify-content: center;
     }
     
     .about {
@@ -1407,7 +1458,7 @@ footer {
 
 /* Hamburger animation */
 .hamburger.active .line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg); /* Reduced from 9px */
+    transform: translateY(9px) rotate(45deg);
 }
 
 .hamburger.active .line:nth-child(2) {
@@ -1415,16 +1466,16 @@ footer {
 }
 
 .hamburger.active .line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg); /* Reduced from -9px */
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
     .hamburger.active .line:nth-child(1) {
-        transform: translateY(5px) rotate(45deg); /* Reduced from 6px */
+        transform: translateY(6px) rotate(45deg);
     }
     
     .hamburger.active .line:nth-child(3) {
-        transform: translateY(-5px) rotate(-45deg); /* Reduced from -6px */
+        transform: translateY(-6px) rotate(-45deg);
     }
 }
 
@@ -1439,14 +1490,14 @@ footer {
     }
     
     .logo {
-        font-size: 1.6rem; /* Reduced from 1.8rem */
+        font-size: 1.8rem;
     }
     
     #theme-toggle {
         margin-left: 0.5rem;
-        font-size: 1.4rem; /* Reduced from 1.6rem */
-        height: 28px; /* Reduced from 30px */
-        width: 28px; /* Reduced from 30px */
+        font-size: 1.6rem;
+        height: 30px;
+        width: 30px;
     }
     
     .hero-content h1 {
@@ -1458,40 +1509,35 @@ footer {
     }
     
     .hero-image {
-        width: 85vw;
-        max-width: 250px;
+        width: 80vw;
+        min-width: 250px;
+        max-width: 280px;
+    }
+    
+    .image-wrapper::before {
+        width: calc(100% + 2.5rem);
+        height: calc(100% + 2.5rem);
+    }
+    
+    .circle-spin {
+        border-width: 0.2rem;
     }
 }
 
 /* Very small devices */
 @media (max-width: 365px) {
-    body {
-        padding-top: 75px; /* Slightly reduced */
-    }
-    
-    header {
-        height: 75px; /* Slightly reduced */
-    }
-    
-    .nav-container {
-        top: 75px; /* Adjusted */
-        height: calc(100vh - 75px); /* Adjusted */
-    }
-    
     #theme-toggle {
         margin-left: 0.3rem;
-        font-size: 1.3rem; /* Reduced from 1.5rem */
-        height: 25px; /* Reduced from 30px */
-        width: 25px; /* Reduced from 30px */
+        font-size: 1.5rem;
     }
     
     .hamburger {
-        width: 24px; /* Reduced from 25px */
-        height: 16px; /* Reduced from 18px */
+        width: 25px;
+        height: 18px;
     }
     
     .hamburger .line {
-        height: 0.22rem; /* Reduced from 0.25rem */
+        height: 0.25rem;
     }
     
     .hero-content h1 {
@@ -1503,10 +1549,48 @@ footer {
     }
     
     .hero-image {
-        width: 90vw;
+        width: 85vw;
+        min-width: 220px;
+        max-width: 250px;
     }
     
     .projects-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Additional fix for Safari/Mac browser compatibility */
+@supports (-webkit-touch-callout: none) {
+    /* Safari specific fixes */
+    .image-wrapper::before {
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+    }
+    
+    .circle-spin {
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+    }
+    
+    @keyframes spin {
+        0% {
+            -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        }
+        100% {
+            -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        }
+    }
+    
+    @keyframes circleSpin {
+        0% {
+            -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        }
+        100% {
+            -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        }
     }
 }
