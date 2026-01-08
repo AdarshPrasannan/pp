@@ -54,6 +54,8 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    position: relative;
+    z-index: 1; /* Ensure sections are below header */
 }
 
 section.show-animate {
@@ -115,6 +117,8 @@ header {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transform: translateZ(0); /* Force hardware acceleration */
+    backface-visibility: hidden;
 }
 
 .logo {
@@ -122,14 +126,25 @@ header {
     color: var(--text-color);
     font-weight: 600;
     cursor: default;
-    line-height: 70px;
     height: 70px;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
+    z-index: 1002; /* Ensure logo stays above everything */
 }
 
 .logo span {
     color: var(--primary-color);
+}
+
+/* Navigation container */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 70px;
+    z-index: 1001; /* Keep nav above content */
+    position: relative;
 }
 
 .nav-links {
@@ -137,6 +152,8 @@ header {
     gap: 3rem;
     align-items: center;
     height: 70px;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-links a {
@@ -150,7 +167,9 @@ header {
     gap: 0.5rem;
     height: 70px;
     line-height: 70px;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+    z-index: 1;
 }
 
 .nav-links a:hover,
@@ -162,13 +181,15 @@ header {
     content: '';
     position: absolute;
     bottom: 1.5rem;
-    left: 1rem;
-    right: 1rem;
+    left: 0.5rem;
+    right: 0.5rem;
     height: 0.2rem;
     background-color: var(--primary-color);
     border-radius: 0.3rem;
+    z-index: -1;
 }
 
+/* Theme Toggle - FIXED FOR DESKTOP */
 #theme-toggle {
     font-size: 2rem;
     color: var(--text-color);
@@ -181,14 +202,20 @@ header {
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
     margin-left: 1rem;
+    position: relative; /* Fixed: Changed from absolute */
+    z-index: 1001;
+    order: 2;
 }
 
 #theme-toggle:hover {
     background-color: rgba(0, 238, 255, 0.1);
+    transform: scale(1.1);
 }
 
+/* Hamburger menu for mobile */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -196,7 +223,8 @@ header {
     justify-content: space-between;
     width: 30px;
     height: 21px;
-    margin-left: 1rem;
+    flex-shrink: 0;
+    z-index: 1002;
 }
 
 .hamburger .line {
@@ -1098,6 +1126,8 @@ footer {
     background-color: var(--darker-color);
     padding: 2rem 9%;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content p {
@@ -1116,7 +1146,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 99;
+    z-index: 999; /* Below header */
     opacity: 0;
     visibility: hidden;
     transition: 0.5s ease;
@@ -1160,6 +1190,15 @@ footer {
     html {
         font-size: 55%;
     }
+    
+    .nav-links {
+        gap: 2rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+        padding: 0 0.3rem;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1173,6 +1212,10 @@ footer {
     
     footer {
         padding: 2rem 3%;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
     }
 }
 
@@ -1192,35 +1235,38 @@ footer {
     
     .logo {
         font-size: 2rem;
-        line-height: 60px;
         height: 60px;
+        flex: 1;
+        z-index: 1002;
     }
     
-    /* FIXED: Theme toggle positioning on mobile */
+    /* Hide desktop navigation on mobile */
+    .header-nav {
+        display: none;
+    }
+    
+    /* Theme toggle on mobile - positioned correctly */
     #theme-toggle {
-        position: absolute;
-        right: 50px;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0;
-        z-index: 1001;
+        position: static;
+        margin-left: auto;
+        margin-right: 1rem;
+        order: 1;
+        height: 40px;
+        width: 40px;
         display: flex !important;
         align-items: center;
         justify-content: center;
+        z-index: 1001;
     }
     
-    /* FIXED: Hamburger positioning */
+    /* Hamburger menu */
     .hamburger {
         display: flex;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1001;
-        margin: 0;
+        order: 2;
+        z-index: 1002;
     }
     
-    /* FIXED: Navigation menu */
+    /* Mobile navigation menu - appears below header */
     .nav-links {
         position: fixed;
         top: 60px;
@@ -1236,6 +1282,8 @@ footer {
         overflow-y: auto;
         align-items: flex-start;
         justify-content: flex-start;
+        display: flex;
+        z-index: 999;
     }
     
     .nav-links.active {
@@ -1267,7 +1315,7 @@ footer {
         font-weight: 600;
     }
     
-    /* FIXED: Hero section mobile spacing */
+    /* Hero section mobile spacing */
     .hero {
         flex-direction: column;
         gap: 3rem;
@@ -1378,6 +1426,39 @@ footer {
     }
 }
 
+/* ===== DESKTOP SPECIFIC FIXES ===== */
+@media (min-width: 769px) {
+    /* Ensure theme toggle stays properly positioned in header */
+    #theme-toggle {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        margin-left: 1rem;
+    }
+    
+    /* Make sure header stays above everything */
+    header {
+        z-index: 1000;
+    }
+    
+    /* Ensure all content is below header */
+    .hero,
+    .about,
+    .skills,
+    .projects,
+    .contact {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Prevent any animation from affecting header position */
+    header {
+        animation: none !important;
+        transform: translateY(0) !important;
+    }
+}
+
 /* Hamburger animation */
 .hamburger.active .line:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
@@ -1411,12 +1492,18 @@ footer {
         width: 100%;
     }
     
+    .logo {
+        font-size: 1.8rem;
+    }
+    
     #theme-toggle {
-        right: 45px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        font-size: 1.8rem;
     }
     
     .hamburger {
-        right: 8px;
+        margin-left: 0.5rem;
     }
     
     .hero-content h1 {
@@ -1436,12 +1523,17 @@ footer {
 /* Very small devices */
 @media (max-width: 365px) {
     #theme-toggle {
-        right: 40px;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+        font-size: 1.6rem;
+        width: 35px;
+        height: 35px;
     }
     
     .hamburger {
         width: 25px;
         height: 18px;
+        margin-left: 0.3rem;
     }
     
     .hamburger .line {
