@@ -54,8 +54,6 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    position: relative;
-    z-index: 1; /* Ensure sections are below header */
 }
 
 section.show-animate {
@@ -117,8 +115,14 @@ header {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    transform: translateZ(0); /* Force hardware acceleration */
-    backface-visibility: hidden;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
 }
 
 .logo {
@@ -126,25 +130,16 @@ header {
     color: var(--text-color);
     font-weight: 600;
     cursor: default;
+    line-height: 70px;
     height: 70px;
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    z-index: 1002; /* Ensure logo stays above everything */
+    order: 1; /* First element */
 }
 
 .logo span {
     color: var(--primary-color);
-}
-
-/* Navigation container */
-.header-nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    height: 70px;
-    z-index: 1001; /* Keep nav above content */
-    position: relative;
 }
 
 .nav-links {
@@ -152,8 +147,8 @@ header {
     gap: 3rem;
     align-items: center;
     height: 70px;
-    position: relative;
-    z-index: 1;
+    margin: 0 auto; /* Center the nav links */
+    order: 2; /* Second element */
 }
 
 .nav-links a {
@@ -167,9 +162,8 @@ header {
     gap: 0.5rem;
     height: 70px;
     line-height: 70px;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     white-space: nowrap;
-    z-index: 1;
 }
 
 .nav-links a:hover,
@@ -181,15 +175,14 @@ header {
     content: '';
     position: absolute;
     bottom: 1.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
+    left: 1rem;
+    right: 1rem;
     height: 0.2rem;
     background-color: var(--primary-color);
     border-radius: 0.3rem;
-    z-index: -1;
 }
 
-/* Theme Toggle - FIXED FOR DESKTOP */
+/* Theme Toggle - Positioned in header, outside nav-links */
 #theme-toggle {
     font-size: 2rem;
     color: var(--text-color);
@@ -203,11 +196,9 @@ header {
     width: 40px;
     border-radius: 50%;
     transition: all 0.3s ease;
+    margin-left: auto; /* Push to right side */
+    order: 3; /* Third element */
     flex-shrink: 0;
-    margin-left: 1rem;
-    position: relative; /* Fixed: Changed from absolute */
-    z-index: 1001;
-    order: 2;
 }
 
 #theme-toggle:hover {
@@ -223,8 +214,9 @@ header {
     justify-content: space-between;
     width: 30px;
     height: 21px;
+    margin-left: 1rem;
     flex-shrink: 0;
-    z-index: 1002;
+    order: 4; /* Fourth element */
 }
 
 .hamburger .line {
@@ -908,7 +900,7 @@ header {
     background: linear-gradient(90deg, #F2C811, #F39C12);
 }
 .progress.stats {
-    background: linear-gradient(90deg, #8E44AD, #9B59B6);
+    background: linear-gradient(90deg, #8E44AD, #9B59b6);
 }
 .progress.analytical {
     background: linear-gradient(90deg, #E74C3C, #E67E22);
@@ -1126,8 +1118,6 @@ footer {
     background-color: var(--darker-color);
     padding: 2rem 9%;
     text-align: center;
-    position: relative;
-    z-index: 1;
 }
 
 .footer-content p {
@@ -1146,7 +1136,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* Below header */
+    z-index: 99;
     opacity: 0;
     visibility: hidden;
     transition: 0.5s ease;
@@ -1228,45 +1218,21 @@ footer {
     header {
         height: 60px;
         padding: 0 3%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    }
+    
+    nav {
+        height: 60px;
     }
     
     .logo {
         font-size: 2rem;
+        line-height: 60px;
         height: 60px;
         flex: 1;
-        z-index: 1002;
-    }
-    
-    /* Hide desktop navigation on mobile */
-    .header-nav {
-        display: none;
-    }
-    
-    /* Theme toggle on mobile - positioned correctly */
-    #theme-toggle {
-        position: static;
-        margin-left: auto;
-        margin-right: 1rem;
         order: 1;
-        height: 40px;
-        width: 40px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        z-index: 1001;
     }
     
-    /* Hamburger menu */
-    .hamburger {
-        display: flex;
-        order: 2;
-        z-index: 1002;
-    }
-    
-    /* Mobile navigation menu - appears below header */
+    /* Hide nav links on mobile (will show when hamburger clicked) */
     .nav-links {
         position: fixed;
         top: 60px;
@@ -1282,8 +1248,9 @@ footer {
         overflow-y: auto;
         align-items: flex-start;
         justify-content: flex-start;
-        display: flex;
+        margin: 0;
         z-index: 999;
+        order: 5; /* Show last on mobile */
     }
     
     .nav-links.active {
@@ -1313,6 +1280,27 @@ footer {
     .nav-links a.active {
         color: var(--primary-color);
         font-weight: 600;
+    }
+    
+    /* Theme toggle on mobile - stays in header */
+    #theme-toggle {
+        position: static;
+        margin-left: auto; /* Push to right before hamburger */
+        order: 2;
+        height: 40px;
+        width: 40px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+    
+    /* Hamburger menu */
+    .hamburger {
+        display: flex;
+        order: 3;
+        margin-left: 1rem;
+        z-index: 1001;
     }
     
     /* Hero section mobile spacing */
@@ -1423,39 +1411,6 @@ footer {
     
     .contact-container {
         flex-direction: column;
-    }
-}
-
-/* ===== DESKTOP SPECIFIC FIXES ===== */
-@media (min-width: 769px) {
-    /* Ensure theme toggle stays properly positioned in header */
-    #theme-toggle {
-        position: relative !important;
-        top: 0 !important;
-        right: 0 !important;
-        transform: none !important;
-        margin-left: 1rem;
-    }
-    
-    /* Make sure header stays above everything */
-    header {
-        z-index: 1000;
-    }
-    
-    /* Ensure all content is below header */
-    .hero,
-    .about,
-    .skills,
-    .projects,
-    .contact {
-        position: relative;
-        z-index: 1;
-    }
-    
-    /* Prevent any animation from affecting header position */
-    header {
-        animation: none !important;
-        transform: translateY(0) !important;
     }
 }
 
