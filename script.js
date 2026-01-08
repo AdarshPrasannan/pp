@@ -34,6 +34,13 @@ if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
+        
+        // Prevent body scrolling when menu is open
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     });
 
     // Close mobile menu when clicking a link
@@ -41,6 +48,7 @@ if (hamburger && navLinks) {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
     });
 
@@ -50,6 +58,7 @@ if (hamburger && navLinks) {
             if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
     });
@@ -95,8 +104,12 @@ if (typedTextSpan && cursorSpan) {
         }
     }
 
+    // Start typing animation when DOM is loaded
     document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(type, newTextDelay + 250);
+        // Check if elements still exist after DOM load
+        if (typedTextSpan && cursorSpan) {
+            setTimeout(type, newTextDelay + 250);
+        }
     });
 }
 
@@ -137,7 +150,10 @@ if (document.querySelector('#skills')) {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { 
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px' // Trigger when 50px from bottom of viewport
+    });
 
     document.querySelectorAll('#skills').forEach(section => {
         observer.observe(section);
@@ -155,7 +171,7 @@ function highlightNav() {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         
-        if (pageYOffset >= sectionTop - 200) {
+        if (pageYOffset >= sectionTop - 150) {
             current = section.getAttribute('id');
         }
     });
@@ -168,7 +184,14 @@ function highlightNav() {
     });
 }
 
-window.addEventListener('scroll', highlightNav);
+// Throttle the scroll event for better performance
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(highlightNav, 100);
+});
 
 // Back to Top Button
 const footerTop = document.querySelector('.footer-top');
@@ -180,6 +203,15 @@ if (footerTop) {
         } else {
             footerTop.classList.remove('active');
         }
+    });
+    
+    // Scroll to top when clicked
+    footerTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }
 
@@ -226,7 +258,14 @@ if (contactForm) {
         if (this.action.includes('formspree')) {
             e.preventDefault();
             
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
             try {
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
                 const response = await fetch(this.action, {
                     method: 'POST',
                     body: new FormData(this),
@@ -243,6 +282,10 @@ if (contactForm) {
                 }
             } catch (error) {
                 alert('Network error. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
         }
         // If no Formspree action, form will submit normally
@@ -254,10 +297,23 @@ if (contactForm) {
 document.querySelectorAll('.info-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
         card.style.transform = 'translateY(-3px)';
+        card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
     });
     
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'translateY(0)';
+        card.style.boxShadow = 'none';
+    });
+});
+
+// Add hover effects for project cards
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.zIndex = '10';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.zIndex = '1';
     });
 });
 
@@ -273,8 +329,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(href);
         
         if (targetElement) {
+            const headerHeight = document.querySelector('header').offsetHeight;
             window.scrollTo({
-                top: targetElement.offsetTop - 80,
+                top: targetElement.offsetTop - headerHeight,
                 behavior: 'smooth'
             });
             
@@ -282,6 +339,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             if (hamburger && navLinks && navLinks.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
     });
@@ -297,6 +355,15 @@ window.addEventListener('load', () => {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+    
+    // Initialize active nav link
+    highlightNav();
+    
+    // Check if skills section is already in viewport and animate
+    const skillsSection = document.querySelector('#skills');
+    if (skillsSection && isElementInViewport(skillsSection)) {
+        animateSkillBars();
+    }
 });
 
 // Helper function to check if element is in viewport
@@ -304,10 +371,8 @@ function isElementInViewport(el) {
     if (!el) return false;
     const rect = el.getBoundingClientRect();
     return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
     );
 }
 
@@ -316,5 +381,95 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && hamburger && navLinks && navLinks.classList.contains('active')) {
         hamburger.classList.remove('active');
         navLinks.classList.remove('active');
+        document.body.style.overflow = 'auto';
     }
+});
+
+// Prevent scrolling when mobile menu is open
+document.addEventListener('touchmove', (e) => {
+    if (navLinks && navLinks.classList.contains('active')) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// ===== Header Scroll Effect =====
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+if (header) {
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+}
+
+// ===== Lazy Load Images =====
+document.addEventListener('DOMContentLoaded', function() {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
+});
+
+// ===== Form Input Validation =====
+const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+if (formInputs.length > 0) {
+    formInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.style.borderColor = '#ff6b6b';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+        
+        input.addEventListener('input', function() {
+            this.style.borderColor = '';
+        });
+    });
+}
+
+// ===== Performance Optimization =====
+// Debounce resize events
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Recalculate any layout-dependent values
+        if (navLinks && navLinks.classList.contains('active')) {
+            // Close mobile menu on resize to desktop
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }, 250);
 });
