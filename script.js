@@ -104,9 +104,7 @@ if (typedTextSpan && cursorSpan) {
         }
     }
 
-    // Start typing animation when DOM is loaded
     document.addEventListener("DOMContentLoaded", function() {
-        // Check if elements still exist after DOM load
         if (typedTextSpan && cursorSpan) {
             setTimeout(type, newTextDelay + 250);
         }
@@ -152,7 +150,7 @@ if (document.querySelector('#skills')) {
         });
     }, { 
         threshold: 0.5,
-        rootMargin: '0px 0px -50px 0px' // Trigger when 50px from bottom of viewport
+        rootMargin: '0px 0px -50px 0px'
     });
 
     document.querySelectorAll('#skills').forEach(section => {
@@ -288,34 +286,8 @@ if (contactForm) {
                 submitBtn.disabled = false;
             }
         }
-        // If no Formspree action, form will submit normally
     });
 }
-
-// ===== Additional Animations & Effects =====
-// Add hover effects for info cards
-document.querySelectorAll('.info-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-3px)';
-        card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-        card.style.boxShadow = 'none';
-    });
-});
-
-// Add hover effects for project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.zIndex = '10';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.zIndex = '1';
-    });
-});
 
 // Add smooth scrolling for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -385,58 +357,17 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Prevent scrolling when mobile menu is open
-document.addEventListener('touchmove', (e) => {
-    if (navLinks && navLinks.classList.contains('active')) {
-        e.preventDefault();
-    }
-}, { passive: false });
-
-// ===== Header Scroll Effect =====
-let lastScrollTop = 0;
+// Keep Header Always Visible
 const header = document.querySelector('header');
-
 if (header) {
+    // Force header to always be visible
+    header.style.transform = 'translateY(0)';
+    
+    // Remove any scroll-based transformations
     window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollTop = scrollTop;
+        header.style.transform = 'translateY(0)';
     });
 }
-
-// ===== Lazy Load Images =====
-document.addEventListener('DOMContentLoaded', function() {
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback for browsers without IntersectionObserver
-        lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        });
-    }
-});
 
 // ===== Form Input Validation =====
 const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
