@@ -1267,27 +1267,7 @@ footer {
         width: 90vw;
     }
 
-   /* ================= HEADER SIZE & SPACING FIX ================= */
-
-/* 1️⃣ Reduce header height */
-header {
-    padding: 1.2rem 9%;   /* was 2rem 9% */
-    height: auto;
-}
-
-/* 2️⃣ Move dark theme toggle down slightly */
-#theme-toggle {
-    position: relative;
-    top: 6px;  /* perfect spacing */
-}
-
-/* 3️⃣ Add proper offset so hero doesn't touch fixed header */
-.hero {
-    margin-top: 8rem;   /* matches reduced header height */
-}
-
-/* 4️⃣ Optional: tighten navbar links vertically */
-.nav-links a {
+  
     padding: 0.3rem 0;
 }
 
