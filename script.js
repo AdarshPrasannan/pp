@@ -19,69 +19,86 @@ themeToggle.addEventListener('click', () => {
 
 // Update the toggle icon based on current theme
 function updateToggleIcon(theme) {
-    themeToggle.innerHTML = theme === 'dark' 
-        ? '<i class="fas fa-sun"></i>' 
-        : '<i class="fas fa-moon"></i>';
+    if (themeToggle) {
+        themeToggle.innerHTML = theme === 'dark' 
+            ? '<i class="fas fa-sun"></i>' 
+            : '<i class="fas fa-moon"></i>';
+    }
 }
 
 // Mobile Navigation
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
     });
-});
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (hamburger && navLinks) {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        }
+    });
+}
 
 // Typing Animation
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"];
-const typingDelay = 200;
-const erasingDelay = 100;
-const newTextDelay = 2000;
-let textArrayIndex = 0;
-let charIndex = 0;
+if (typedTextSpan && cursorSpan) {
+    const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"];
+    const typingDelay = 200;
+    const erasingDelay = 100;
+    const newTextDelay = 2000;
+    let textArrayIndex = 0;
+    let charIndex = 0;
 
-function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
-        if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type, typingDelay);
-    } 
-    else {
-        cursorSpan.classList.remove("typing");
-        setTimeout(erase, newTextDelay);
+    function type() {
+        if (charIndex < textArray[textArrayIndex].length) {
+            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+        } 
+        else {
+            cursorSpan.classList.remove("typing");
+            setTimeout(erase, newTextDelay);
+        }
     }
-}
 
-function erase() {
-    if (charIndex > 0) {
-        if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-        charIndex--;
-        setTimeout(erase, erasingDelay);
-    } 
-    else {
-        cursorSpan.classList.remove("typing");
-        textArrayIndex++;
-        if(textArrayIndex >= textArray.length) textArrayIndex = 0;
-        setTimeout(type, typingDelay + 1100);
+    function erase() {
+        if (charIndex > 0) {
+            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+            charIndex--;
+            setTimeout(erase, erasingDelay);
+        } 
+        else {
+            cursorSpan.classList.remove("typing");
+            textArrayIndex++;
+            if(textArrayIndex >= textArray.length) textArrayIndex = 0;
+            setTimeout(type, typingDelay + 1100);
+        }
     }
-}
 
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(type, newTextDelay + 250);
-});
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(type, newTextDelay + 250);
+    });
+}
 
 // Scroll Animations
 function animateOnScroll() {
@@ -112,18 +129,20 @@ function animateSkillBars() {
 }
 
 // Use Intersection Observer for skill bars
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateSkillBars();
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+if (document.querySelector('#skills')) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
 
-document.querySelectorAll('#skills').forEach(section => {
-    observer.observe(section);
-});
+    document.querySelectorAll('#skills').forEach(section => {
+        observer.observe(section);
+    });
+}
 
 // Highlight Active Nav Link on Scroll
 function highlightNav() {
@@ -154,16 +173,21 @@ window.addEventListener('scroll', highlightNav);
 // Back to Top Button
 const footerTop = document.querySelector('.footer-top');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-        footerTop.classList.add('active');
-    } else {
-        footerTop.classList.remove('active');
-    }
-});
+if (footerTop) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            footerTop.classList.add('active');
+        } else {
+            footerTop.classList.remove('active');
+        }
+    });
+}
 
 // Update Copyright Year
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearElement = document.getElementById('year');
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
 
 // ===== Timeline Navigation =====
 const timelineBtns = document.querySelectorAll('.timeline-btn');
@@ -253,6 +277,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
             });
+            
+            // Close mobile menu if open
+            if (hamburger && navLinks && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
         }
     });
 });
@@ -262,18 +292,16 @@ window.addEventListener('load', () => {
     // Initialize animations
     animateOnScroll();
     
-    // Initialize skill bars if skills section is visible
-    const skillsSection = document.querySelector('#skills');
-    if (skillsSection && isElementInViewport(skillsSection)) {
-        animateSkillBars();
-    }
-    
     // Initialize current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 });
 
 // Helper function to check if element is in viewport
 function isElementInViewport(el) {
+    if (!el) return false;
     const rect = el.getBoundingClientRect();
     return (
         rect.top >= 0 &&
@@ -282,3 +310,11 @@ function isElementInViewport(el) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
+// Close mobile menu on ESC key press
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && hamburger && navLinks && navLinks.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    }
+});
