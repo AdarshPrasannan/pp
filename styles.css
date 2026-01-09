@@ -406,18 +406,32 @@ header {
     }
 }
 
-/* ===== ABOUT SECTION ===== */
+/* ===== ABOUT SECTION - PHOTO ON LEFT, CONTENT ON RIGHT FOR ALL DEVICES ===== */
 .about {
+    background-color: var(--darker-color);
+}
+
+.about-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 10rem;
-    background-color: var(--darker-color);
+    align-items: flex-start; /* Align items at the top */
+    gap: 8rem;
+    width: 100%;
+}
+
+/* Photo on LEFT side (always left) */
+.about-img {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* Align image to the left */
+    align-items: flex-start;
 }
 
 .about-img .image-container {
     position: relative;
-    width: 35vw;
+    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -425,7 +439,9 @@ header {
 
 .about-img img {
     width: 100%;
+    height: auto;
     transition: 0.5s ease;
+    display: block;
 }
 
 .about-img:hover img {
@@ -454,7 +470,9 @@ header {
     font-weight: 600;
 }
 
+/* Content on RIGHT side (always right) */
 .about-content {
+    flex: 1;
     max-width: 60rem;
 }
 
@@ -571,6 +589,7 @@ header {
 .btn-container {
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .download-cv {
@@ -1195,6 +1214,10 @@ footer {
     .hero-image {
         width: 40vw;
     }
+    
+    .about-container {
+        gap: 6rem;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1217,9 +1240,17 @@ footer {
     .hero-image {
         width: 45vw;
     }
+    
+    .about-container {
+        gap: 5rem;
+    }
+    
+    .about-img .image-container {
+        max-width: 350px;
+    }
 }
 
-/* ===== MOBILE RESPONSIVE FIXES WITH FIXED CIRCLE ALIGNMENT ===== */
+/* ===== MOBILE RESPONSIVE FIXES ===== */
 @media (max-width: 768px) {
     body {
         padding-top: 100px; /* Adjusted for mobile header */
@@ -1318,9 +1349,10 @@ footer {
         justify-content: center;
     }
     
+    /* HERO SECTION - STACK ON MOBILE */
     .hero {
         flex-direction: column;
-        gap: 5rem; /* Increased gap for better spacing */
+        gap: 5rem;
         text-align: center;
         min-height: calc(100vh - 100px);
         padding-top: 2rem;
@@ -1355,39 +1387,27 @@ footer {
         padding: 0 1rem;
     }
     
-    /* FIXED CIRCLE FOR MOBILE */
+    /* HERO IMAGE FOR MOBILE */
     .hero-image {
-        width: 70vw; /* Fixed width for mobile */
+        width: 70vw;
         min-width: 280px;
         max-width: 320px;
         margin: 0 auto;
         order: 1;
     }
     
-    /* Ensure proper circle alignment on mobile */
-    .image-wrapper {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-        position: relative;
-    }
-    
     .image-wrapper::before {
-        width: calc(100% + 3rem); /* Adjusted for mobile */
-        height: calc(100% + 3rem); /* Adjusted for mobile */
+        width: calc(100% + 3rem);
+        height: calc(100% + 3rem);
     }
     
     .profile-img {
         width: 88%;
         height: 88%;
-        position: relative;
-        z-index: 1;
     }
     
     .circle-spin {
-        width: 100%;
-        height: 100%;
-        border-width: 0.25rem; /* Slightly thinner for mobile */
+        border-width: 0.25rem;
     }
     
     .social-links {
@@ -1395,16 +1415,45 @@ footer {
         justify-content: center;
     }
     
-    .about {
-        flex-direction: column;
+    /* ABOUT SECTION - KEEP PHOTO ON LEFT, CONTENT ON RIGHT EVEN ON MOBILE */
+    .about-container {
+        flex-direction: column; /* Stack vertically on mobile */
         gap: 4rem;
+    }
+    
+    /* For mobile, we'll use a different approach to keep visual hierarchy */
+    .about-img {
+        justify-content: center;
+        width: 100%;
     }
     
     .about-img .image-container {
         width: 80vw;
+        max-width: 350px;
+        min-width: unset;
         margin: 0 auto;
     }
     
+    .about-content {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Adjust grid layouts for mobile */
+    .strengths-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .personal-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* OTHER SECTIONS */
     .timeline::before {
         left: 30px;
     }
@@ -1431,24 +1480,6 @@ footer {
     
     .content-card {
         padding: 2rem;
-    }
-    
-    .strengths-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .personal-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .btn-container {
-        flex-direction: column;
-    }
-    
-    .image-overlay {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
     }
     
     .contact-container {
@@ -1522,6 +1553,15 @@ footer {
     .circle-spin {
         border-width: 0.2rem;
     }
+    
+    .about-img .image-container {
+        width: 90vw;
+        max-width: 300px;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+    }
 }
 
 /* Very small devices */
@@ -1556,6 +1596,11 @@ footer {
     
     .projects-container {
         grid-template-columns: 1fr;
+    }
+    
+    .about-img .image-container {
+        width: 95vw;
+        max-width: 280px;
     }
 }
 
