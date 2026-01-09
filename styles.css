@@ -406,28 +406,32 @@ header {
     }
 }
 
-/* ===== ABOUT SECTION - IMAGE ON LEFT, CONTENT ON RIGHT ===== */
+/* ===== ABOUT SECTION - PHOTO ON LEFT, CONTENT ON RIGHT ===== */
 .about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8rem; /* Reduced from 10rem for better spacing */
     background-color: var(--darker-color);
-    flex-direction: row; /* Ensure side-by-side layout */
 }
 
-/* Image on left side */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+    gap: 8rem;
+    width: 100%;
+}
+
+/* Photo on LEFT side */
 .about-img {
     flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Align image to the left */
+    align-items: flex-start;
 }
 
 .about-img .image-container {
     position: relative;
     width: 100%;
     max-width: 400px;
+    min-width: 300px;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -437,6 +441,7 @@ header {
     width: 100%;
     height: auto;
     transition: 0.5s ease;
+    display: block;
 }
 
 .about-img:hover img {
@@ -465,7 +470,7 @@ header {
     font-weight: 600;
 }
 
-/* Content on right side */
+/* Content on RIGHT side */
 .about-content {
     flex: 1;
     max-width: 60rem;
@@ -584,6 +589,7 @@ header {
 .btn-container {
     display: flex;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .download-cv {
@@ -1209,7 +1215,7 @@ footer {
         width: 40vw;
     }
     
-    .about {
+    .about-container {
         gap: 6rem;
     }
 }
@@ -1235,7 +1241,7 @@ footer {
         width: 45vw;
     }
     
-    .about {
+    .about-container {
         gap: 5rem;
     }
 }
@@ -1417,15 +1423,19 @@ footer {
     }
     
     /* ABOUT SECTION FOR MOBILE - Stack vertically */
-    .about {
+    .about-container {
         flex-direction: column;
         gap: 4rem;
+    }
+    
+    .about-img {
+        justify-content: center;
     }
     
     .about-img .image-container {
         width: 80vw;
         max-width: 400px;
-        margin: 0 auto;
+        min-width: unset;
     }
     
     .about-content {
@@ -1553,6 +1563,10 @@ footer {
     
     .about-img .image-container {
         width: 90vw;
+    }
+    
+    .btn-container {
+        flex-direction: column;
     }
 }
 
