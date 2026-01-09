@@ -542,6 +542,7 @@ header {
     font-weight: 500;
 }
 
+/* ===== PERSONAL INFO SECTION - FIXED ALIGNMENT LIKE THE IMAGE ===== */
 .personal-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -551,12 +552,13 @@ header {
 
 .info-card {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to flex-start for better alignment */
     gap: 1.5rem;
     padding: 1.5rem;
     background: var(--card-bg);
     border-radius: 1rem;
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
 .info-card:hover {
@@ -568,22 +570,35 @@ header {
     font-size: 2rem;
     color: var(--primary-color);
     width: 3rem;
+    flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 .info-card div {
     display: flex;
     flex-direction: column;
+    width: 100%; /* Ensure full width */
 }
 
+/* FIX: HEADINGS ALIGNMENT - Like the business card image */
 .info-card span {
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Increased from 1.2rem for better readability */
     color: var(--primary-color);
     opacity: 0.8;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    display: block;
+    width: 100%;
+    text-align: left;
 }
 
 .info-card strong {
     font-size: 1.5rem;
-    margin-top: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: block;
+    width: 100%;
+    text-align: left;
+    word-break: break-word; /* Prevent overflow */
 }
 
 .btn-container {
@@ -936,7 +951,7 @@ header {
 .progress.analytical { background: linear-gradient(90deg, #E74C3C, #E67E22); }
 .progress.storytelling { background: linear-gradient(90deg, #3498DB, #2980B9); }
 .progress.communication { background: linear-gradient(90deg, #2ECC71, #27AE60); }
-.progress.collaboration { background: linear-gradient(90deg, #9B59B6, #8E44AD); }
+.progress.collaboration { background: linear-gradient(90deg, #9B59b6, #8E44AD); }
 .progress.critical { background: linear-gradient(90deg, #E67E22, #D35400); }
 
 /* ===== PROJECTS SECTION ===== */
@@ -1250,17 +1265,12 @@ footer {
     }
 }
 
-/* ===== MOBILE RESPONSIVE FIXES - UPDATED FOR PERFECT ALIGNMENT ===== */
+/* ===== MOBILE RESPONSIVE FIXES - UPDATED FOR PERFECT ALIGNMENT LIKE THE IMAGE ===== */
 @media (max-width: 768px) {
-    /* FIX: Adjust body padding for proper vertical centering */
     body {
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+        padding-top: 100px; /* Adjusted for mobile header */
     }
     
-    /* FIX: Header adjustments */
     header {
         height: 100px;
         padding: 0.5rem 3%;
@@ -1354,70 +1364,51 @@ footer {
         justify-content: center;
     }
     
-    /* FIX: HERO SECTION - PERFECT VERTICAL CENTERING */
+    /* HERO SECTION - STACK ON MOBILE */
     .hero {
         flex-direction: column;
-        gap: 4rem;
+        gap: 5rem;
         text-align: center;
         min-height: calc(100vh - 100px);
-        padding: 2rem 0;
-        margin: auto 0;
-        justify-content: center;
-        align-items: center;
+        padding-top: 2rem;
+        margin-top: 0;
     }
     
     .hero-content {
         order: 2;
+        padding: 0 1rem;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
     
     .hero-content h4 {
         font-size: 2.5rem;
         margin-top: 0;
         margin-bottom: 1rem;
-        line-height: 1.2;
     }
     
     .hero-content h1 {
         font-size: 4rem;
         margin: 0.5rem 0;
-        line-height: 1.2;
     }
     
     .hero-content h3 {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
-        line-height: 1.2;
     }
     
     .hero-content p {
         font-size: 1.5rem;
         margin-bottom: 2rem;
         padding: 0 1rem;
-        line-height: 1.6;
-        max-width: 100%;
     }
     
-    /* FIX: HERO IMAGE - PROPER SIZING AND SPACING */
+    /* HERO IMAGE FOR MOBILE */
     .hero-image {
         width: 70vw;
         min-width: 280px;
         max-width: 320px;
         margin: 0 auto;
         order: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .image-wrapper {
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
     }
     
     .image-wrapper::before {
@@ -1428,47 +1419,26 @@ footer {
     .profile-img {
         width: 88%;
         height: 88%;
-        object-fit: cover;
     }
     
     .circle-spin {
         border-width: 0.25rem;
     }
     
-    /* FIX: Social links and buttons alignment */
     .social-links {
         margin-bottom: 3rem;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
     }
     
-    .social-links a {
-        width: 4rem;
-        height: 4rem;
-    }
-    
-    .hire-me {
-        margin: 1rem auto;
-        display: inline-flex;
-    }
-    
-    /* FIX: ABOUT SECTION - IMPROVED MOBILE LAYOUT */
-    .about {
-        min-height: auto;
-        padding: 8rem 3% 4rem;
-    }
-    
+    /* FIX: ABOUT SECTION - PERFECT ALIGNMENT FOR PERSONAL INFO LIKE THE IMAGE */
     .about-container {
-        flex-direction: column;
+        flex-direction: column; /* Stack vertically on mobile */
         gap: 4rem;
-        align-items: center;
     }
     
     .about-img {
         justify-content: center;
         width: 100%;
-        margin: 0 auto;
     }
     
     .about-img .image-container {
@@ -1481,46 +1451,81 @@ footer {
     .about-content {
         width: 100%;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
     
-    /* FIX: Adjust grid layouts for mobile */
+    /* FIX: PERSONAL INFO GRID - SINGLE COLUMN FOR BETTER ALIGNMENT */
+    .personal-info {
+        grid-template-columns: 1fr !important; /* Force single column */
+        gap: 1.2rem;
+        margin: 2.5rem 0;
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* FIX: INFO CARD - BETTER ALIGNMENT LIKE THE BUSINESS CARD IMAGE */
+    .info-card {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 1.2rem;
+        gap: 1.2rem;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .info-card i {
+        font-size: 1.8rem;
+        width: 2.5rem;
+        margin-top: 0.2rem; /* Align icon with text */
+    }
+    
+    .info-card div {
+        flex: 1;
+        text-align: left;
+    }
+    
+    /* FIX: HEADING AND CONTENT ALIGNMENT - LIKE THE IMAGE */
+    .info-card span {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        opacity: 1;
+        margin-bottom: 0.3rem;
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+    
+    .info-card strong {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-color);
+        display: block;
+        text-align: left;
+        width: 100%;
+        line-height: 1.4;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Adjust grid layouts for mobile */
     .strengths-grid {
         grid-template-columns: 1fr;
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         margin: 0 auto;
-    }
-    
-    .personal-info {
-        grid-template-columns: 1fr;
-        width: 100%;
-        max-width: 400px;
-        margin: 3rem auto;
     }
     
     .btn-container {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         margin: 0 auto;
     }
     
-    /* FIX: Other sections padding */
-    section {
-        padding: 8rem 3% 4rem;
-        min-height: auto;
-    }
-    
-    .heading {
-        font-size: 3.5rem;
-        margin-bottom: 3rem;
-    }
-    
-    /* FIX: Timeline adjustments */
+    /* OTHER SECTIONS */
     .timeline::before {
         left: 30px;
     }
@@ -1549,30 +1554,8 @@ footer {
         padding: 2rem;
     }
     
-    /* FIX: Contact section */
     .contact-container {
         flex-direction: column;
-        gap: 3rem;
-    }
-    
-    .input-box input {
-        width: 100%;
-    }
-    
-    /* FIX: Projects grid */
-    .projects-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    /* FIX: Skills section */
-    .skills-container {
-        flex-direction: column;
-        gap: 3rem;
-    }
-    
-    .skill-category {
-        width: 100%;
     }
 }
 
@@ -1599,62 +1582,12 @@ footer {
     }
 }
 
-/* ===== EXTRA SMALL DEVICES - FURTHER REFINEMENTS ===== */
+/* Extra small devices */
 @media (max-width: 450px) {
     html {
         font-size: 50%;
     }
     
-    /* FIX: Better vertical spacing */
-    .hero {
-        gap: 3rem;
-        padding: 1rem 0;
-    }
-    
-    .hero-content h4 {
-        font-size: 2.2rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .hero-content h1 {
-        font-size: 3.2rem;
-        margin: 0.3rem 0;
-    }
-    
-    .hero-content h3 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .hero-content p {
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-        padding: 0 0.5rem;
-    }
-    
-    /* FIX: Hero image sizing */
-    .hero-image {
-        width: 75vw;
-        min-width: 250px;
-        max-width: 280px;
-    }
-    
-    .image-wrapper::before {
-        width: calc(100% + 2.5rem);
-        height: calc(100% + 2.5rem);
-    }
-    
-    .circle-spin {
-        border-width: 0.2rem;
-    }
-    
-    /* FIX: About image */
-    .about-img .image-container {
-        width: 85vw;
-        max-width: 300px;
-    }
-    
-    /* FIX: Input boxes */
     .input-box input {
         width: 100%;
     }
@@ -1670,22 +1603,65 @@ footer {
         width: 30px;
     }
     
-    /* FIX: Button containers */
-    .btn-container {
-        flex-direction: column;
-        width: 100%;
+    .hero-content h1 {
+        font-size: 3.5rem;
     }
     
-    .btn {
-        width: 100%;
-        max-width: 250px;
-        justify-content: center;
+    .hero-content h3 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-image {
+        width: 80vw;
+        min-width: 250px;
+        max-width: 280px;
+    }
+    
+    .image-wrapper::before {
+        width: calc(100% + 2.5rem);
+        height: calc(100% + 2.5rem);
+    }
+    
+    .circle-spin {
+        border-width: 0.2rem;
+    }
+    
+    .about-img .image-container {
+        width: 90vw;
+        max-width: 300px;
+    }
+    
+    /* FIX: PERSONAL INFO FOR EXTRA SMALL DEVICES */
+    .personal-info {
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .info-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .info-card i {
+        font-size: 1.6rem;
+        width: 2.2rem;
+    }
+    
+    .info-card span {
+        font-size: 1.3rem;
+    }
+    
+    .info-card strong {
+        font-size: 1.4rem;
+    }
+    
+    .btn-container {
+        flex-direction: column;
     }
 }
 
-/* ===== VERY SMALL DEVICES - FINAL REFINEMENTS ===== */
+/* Very small devices */
 @media (max-width: 365px) {
-    /* FIX: Header elements */
     #theme-toggle {
         margin-left: 0.3rem;
         font-size: 1.5rem;
@@ -1700,41 +1676,50 @@ footer {
         height: 0.25rem;
     }
     
-    /* FIX: Hero text sizing */
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: 3rem;
     }
     
     .hero-content h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
-    /* FIX: Hero image */
     .hero-image {
         width: 85vw;
         min-width: 220px;
         max-width: 250px;
     }
     
-    /* FIX: Projects container */
     .projects-container {
         grid-template-columns: 1fr;
     }
     
-    /* FIX: About image */
     .about-img .image-container {
-        width: 90vw;
+        width: 95vw;
         max-width: 280px;
     }
     
-    /* FIX: Section padding */
-    section {
-        padding: 6rem 3% 3rem;
+    /* FIX: PERSONAL INFO FOR VERY SMALL DEVICES */
+    .personal-info {
+        gap: 0.8rem;
     }
     
-    .heading {
-        font-size: 3rem;
-        margin-bottom: 2rem;
+    .info-card {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .info-card i {
+        font-size: 1.5rem;
+        width: 2rem;
+    }
+    
+    .info-card span {
+        font-size: 1.2rem;
+    }
+    
+    .info-card strong {
+        font-size: 1.3rem;
     }
 }
 
@@ -1773,35 +1758,14 @@ footer {
         }
     }
     
-    /* FIX: Safari flexbox issues */
-    .hero {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-align-items: center;
-        align-items: center;
+    /* FIX: Safari flexbox alignment */
+    .info-card {
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
     }
     
-    .about-container {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-    }
-}
-
-/* FIX: Prevent horizontal scrolling on mobile */
-@media (max-width: 768px) {
-    html, body {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    
-    section {
-        width: 100%;
-        overflow: hidden;
+    .info-card div {
+        -webkit-flex: 1;
+        flex: 1;
     }
 }
