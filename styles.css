@@ -1250,12 +1250,17 @@ footer {
     }
 }
 
-/* ===== MOBILE RESPONSIVE FIXES ===== */
+/* ===== MOBILE RESPONSIVE FIXES - UPDATED FOR PERFECT ALIGNMENT ===== */
 @media (max-width: 768px) {
+    /* FIX: Adjust body padding for proper vertical centering */
     body {
-        padding-top: 100px; /* Adjusted for mobile header */
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
     
+    /* FIX: Header adjustments */
     header {
         height: 100px;
         padding: 0.5rem 3%;
@@ -1349,51 +1354,70 @@ footer {
         justify-content: center;
     }
     
-    /* HERO SECTION - STACK ON MOBILE */
+    /* FIX: HERO SECTION - PERFECT VERTICAL CENTERING */
     .hero {
         flex-direction: column;
-        gap: 5rem;
+        gap: 4rem;
         text-align: center;
         min-height: calc(100vh - 100px);
-        padding-top: 2rem;
-        margin-top: 0;
+        padding: 2rem 0;
+        margin: auto 0;
+        justify-content: center;
+        align-items: center;
     }
     
     .hero-content {
         order: 2;
-        padding: 0 1rem;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .hero-content h4 {
         font-size: 2.5rem;
         margin-top: 0;
         margin-bottom: 1rem;
+        line-height: 1.2;
     }
     
     .hero-content h1 {
         font-size: 4rem;
         margin: 0.5rem 0;
+        line-height: 1.2;
     }
     
     .hero-content h3 {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
+        line-height: 1.2;
     }
     
     .hero-content p {
         font-size: 1.5rem;
         margin-bottom: 2rem;
         padding: 0 1rem;
+        line-height: 1.6;
+        max-width: 100%;
     }
     
-    /* HERO IMAGE FOR MOBILE */
+    /* FIX: HERO IMAGE - PROPER SIZING AND SPACING */
     .hero-image {
         width: 70vw;
         min-width: 280px;
         max-width: 320px;
         margin: 0 auto;
         order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .image-wrapper {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
     }
     
     .image-wrapper::before {
@@ -1404,27 +1428,47 @@ footer {
     .profile-img {
         width: 88%;
         height: 88%;
+        object-fit: cover;
     }
     
     .circle-spin {
         border-width: 0.25rem;
     }
     
+    /* FIX: Social links and buttons alignment */
     .social-links {
         margin-bottom: 3rem;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
     }
     
-    /* ABOUT SECTION - KEEP PHOTO ON LEFT, CONTENT ON RIGHT EVEN ON MOBILE */
+    .social-links a {
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .hire-me {
+        margin: 1rem auto;
+        display: inline-flex;
+    }
+    
+    /* FIX: ABOUT SECTION - IMPROVED MOBILE LAYOUT */
+    .about {
+        min-height: auto;
+        padding: 8rem 3% 4rem;
+    }
+    
     .about-container {
-        flex-direction: column; /* Stack vertically on mobile */
+        flex-direction: column;
         gap: 4rem;
+        align-items: center;
     }
     
-    /* For mobile, we'll use a different approach to keep visual hierarchy */
     .about-img {
         justify-content: center;
         width: 100%;
+        margin: 0 auto;
     }
     
     .about-img .image-container {
@@ -1437,23 +1481,46 @@ footer {
     .about-content {
         width: 100%;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
-    /* Adjust grid layouts for mobile */
+    /* FIX: Adjust grid layouts for mobile */
     .strengths-grid {
         grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     .personal-info {
         grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 400px;
+        margin: 3rem auto;
     }
     
     .btn-container {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
-    /* OTHER SECTIONS */
+    /* FIX: Other sections padding */
+    section {
+        padding: 8rem 3% 4rem;
+        min-height: auto;
+    }
+    
+    .heading {
+        font-size: 3.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    /* FIX: Timeline adjustments */
     .timeline::before {
         left: 30px;
     }
@@ -1482,8 +1549,30 @@ footer {
         padding: 2rem;
     }
     
+    /* FIX: Contact section */
     .contact-container {
         flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .input-box input {
+        width: 100%;
+    }
+    
+    /* FIX: Projects grid */
+    .projects-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* FIX: Skills section */
+    .skills-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .skill-category {
+        width: 100%;
     }
 }
 
@@ -1510,12 +1599,62 @@ footer {
     }
 }
 
-/* Extra small devices */
+/* ===== EXTRA SMALL DEVICES - FURTHER REFINEMENTS ===== */
 @media (max-width: 450px) {
     html {
         font-size: 50%;
     }
     
+    /* FIX: Better vertical spacing */
+    .hero {
+        gap: 3rem;
+        padding: 1rem 0;
+    }
+    
+    .hero-content h4 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 3.2rem;
+        margin: 0.3rem 0;
+    }
+    
+    .hero-content h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    /* FIX: Hero image sizing */
+    .hero-image {
+        width: 75vw;
+        min-width: 250px;
+        max-width: 280px;
+    }
+    
+    .image-wrapper::before {
+        width: calc(100% + 2.5rem);
+        height: calc(100% + 2.5rem);
+    }
+    
+    .circle-spin {
+        border-width: 0.2rem;
+    }
+    
+    /* FIX: About image */
+    .about-img .image-container {
+        width: 85vw;
+        max-width: 300px;
+    }
+    
+    /* FIX: Input boxes */
     .input-box input {
         width: 100%;
     }
@@ -1531,41 +1670,22 @@ footer {
         width: 30px;
     }
     
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
-    
-    .hero-content h3 {
-        font-size: 2.2rem;
-    }
-    
-    .hero-image {
-        width: 80vw;
-        min-width: 250px;
-        max-width: 280px;
-    }
-    
-    .image-wrapper::before {
-        width: calc(100% + 2.5rem);
-        height: calc(100% + 2.5rem);
-    }
-    
-    .circle-spin {
-        border-width: 0.2rem;
-    }
-    
-    .about-img .image-container {
-        width: 90vw;
-        max-width: 300px;
-    }
-    
+    /* FIX: Button containers */
     .btn-container {
         flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
     }
 }
 
-/* Very small devices */
+/* ===== VERY SMALL DEVICES - FINAL REFINEMENTS ===== */
 @media (max-width: 365px) {
+    /* FIX: Header elements */
     #theme-toggle {
         margin-left: 0.3rem;
         font-size: 1.5rem;
@@ -1580,27 +1700,41 @@ footer {
         height: 0.25rem;
     }
     
+    /* FIX: Hero text sizing */
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     
     .hero-content h3 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
+    /* FIX: Hero image */
     .hero-image {
         width: 85vw;
         min-width: 220px;
         max-width: 250px;
     }
     
+    /* FIX: Projects container */
     .projects-container {
         grid-template-columns: 1fr;
     }
     
+    /* FIX: About image */
     .about-img .image-container {
-        width: 95vw;
+        width: 90vw;
         max-width: 280px;
+    }
+    
+    /* FIX: Section padding */
+    section {
+        padding: 6rem 3% 3rem;
+    }
+    
+    .heading {
+        font-size: 3rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -1637,5 +1771,37 @@ footer {
             -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
             transform: translate3d(-50%, -50%, 0) rotate(360deg);
         }
+    }
+    
+    /* FIX: Safari flexbox issues */
+    .hero {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    
+    .about-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+/* FIX: Prevent horizontal scrolling on mobile */
+@media (max-width: 768px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    section {
+        width: 100%;
+        overflow: hidden;
     }
 }
