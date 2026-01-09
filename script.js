@@ -69,7 +69,7 @@ const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
 if (typedTextSpan && cursorSpan) {
-    const textArray = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Data Storyteller"];
+    const textArray = ["Data Analyst", "Business Intelligence Analyst", "Data Storyteller"];
     const typingDelay = 200;
     const erasingDelay = 100;
     const newTextDelay = 2000;
