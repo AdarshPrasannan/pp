@@ -406,18 +406,28 @@ header {
     }
 }
 
-/* ===== ABOUT SECTION ===== */
+/* ===== ABOUT SECTION - IMAGE ON LEFT, CONTENT ON RIGHT ===== */
 .about {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
+    gap: 8rem; /* Reduced from 10rem for better spacing */
     background-color: var(--darker-color);
+    flex-direction: row; /* Ensure side-by-side layout */
+}
+
+/* Image on left side */
+.about-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-img .image-container {
     position: relative;
-    width: 35vw;
+    width: 100%;
+    max-width: 400px;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -425,6 +435,7 @@ header {
 
 .about-img img {
     width: 100%;
+    height: auto;
     transition: 0.5s ease;
 }
 
@@ -454,7 +465,9 @@ header {
     font-weight: 600;
 }
 
+/* Content on right side */
 .about-content {
+    flex: 1;
     max-width: 60rem;
 }
 
@@ -1195,6 +1208,10 @@ footer {
     .hero-image {
         width: 40vw;
     }
+    
+    .about {
+        gap: 6rem;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1216,6 +1233,10 @@ footer {
     
     .hero-image {
         width: 45vw;
+    }
+    
+    .about {
+        gap: 5rem;
     }
 }
 
@@ -1395,6 +1416,7 @@ footer {
         justify-content: center;
     }
     
+    /* ABOUT SECTION FOR MOBILE - Stack vertically */
     .about {
         flex-direction: column;
         gap: 4rem;
@@ -1402,7 +1424,31 @@ footer {
     
     .about-img .image-container {
         width: 80vw;
+        max-width: 400px;
         margin: 0 auto;
+    }
+    
+    .about-content {
+        text-align: center;
+    }
+    
+    .strengths-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .personal-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image-overlay {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
     }
     
     .timeline::before {
@@ -1431,24 +1477,6 @@ footer {
     
     .content-card {
         padding: 2rem;
-    }
-    
-    .strengths-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .personal-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .btn-container {
-        flex-direction: column;
-    }
-    
-    .image-overlay {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
     }
     
     .contact-container {
@@ -1522,6 +1550,10 @@ footer {
     .circle-spin {
         border-width: 0.2rem;
     }
+    
+    .about-img .image-container {
+        width: 90vw;
+    }
 }
 
 /* Very small devices */
@@ -1556,6 +1588,10 @@ footer {
     
     .projects-container {
         grid-template-columns: 1fr;
+    }
+    
+    .about-img .image-container {
+        width: 95vw;
     }
 }
 
